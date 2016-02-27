@@ -29,13 +29,16 @@ echo -n "Choose an action: "
 read uboot
 case "$uboot" in
   1) echo "Unlocking for BB"
-  cd ../bb_wrt && patch < ../tmp/PulshenWRT_BB/uboot_unlock.patch
+  cd ../bb_wrt/target/linux/ar71xx/files/drivers/mtd/
+  patch < ../../../../../../../tmp/PulshenWRT_BB/uboot_unlock.patch
   ;;
   2) echo "Unlocking for CC"
-  cd ../cc_wrt && patch < ../tmp/PulshenWRT_CC/uboot_unlock.patch
+  cd ../cc_wrt/target/linux/ar71xx/files/drivers/mtd/
+  patch < ../../../../../../../tmp/PulshenWRT_CC/uboot_unlock.patch
   ;;
   3) echo "Unlocking for trunk"
-  cd ../trunk_wrt && patch < ../tmp/PulshenWRT_trunk/uboot_unlock.patch
+  cd ../trunk_wrt/target/linux/ar71xx/files/drivers/mtd/
+  patch < ../../../../../../../tmp/PulshenWRT_trunk/uboot_unlock.patch
   ;;
   *) echo "Waiiting for input"
   ;;
