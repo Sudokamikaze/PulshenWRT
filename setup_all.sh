@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir tmp
 echo Installing libs
 ./bin/prepare_utils.sh
 echo Downloading sources
