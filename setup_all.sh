@@ -1,5 +1,6 @@
 #!/bin/bash
 mkdir tmp
+mkdir build_dir
 echo Installing libs
 ./bin/prepare_utils.sh
 echo Downloading sources
