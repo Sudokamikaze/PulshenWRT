@@ -12,6 +12,7 @@ case "$item" in
   ;;
   2) echo "Cloning repository"
   cd tmp && git clone https://github.com/Sudokamikaze/PulshenWRT_CC.git &&  echo Applying patches && cp -r PulshenWRT_CC/files ../build_dir/cc_wrt/ && cd ../build_dir/cc_wrt && patch < ../../tmp/PulshenWRT_CC/PulshenWRT_CC.diff
+  cp feeds.conf.default ../build_dir/cc_wrt
   ;;
   3) echo "Cloning repository"
   cd tmp && git clone https://github.com/Sudokamikaze/PulshenWRT_trunk.git &&  echo Applying patches && cp -r PulshenWRT_trunk/files ../build_dir/trunk_wrt/ && cd ../build_dir/trunk_wrt && patch < ../../tmp/PulshenWRT_trunk/PulshenWRT_trunk.diff
