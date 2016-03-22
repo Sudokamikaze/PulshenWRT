@@ -18,7 +18,7 @@ case "$item" in
   ;;
   3) echo "Cloning repository"
   git clone git://git.openwrt.org/openwrt.git trunk_wrt && cd trunk_wrt && ./scripts/feeds update -a && ./scripts/feeds install -a
-  ../../configs_default/config_trunk ./.config
+  cp ../../configs_default/config_trunk ./.config
   ;;
   *) echo "Waiting for input"
   ;;
