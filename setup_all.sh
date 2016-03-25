@@ -6,5 +6,5 @@ echo Installing libs
 echo Downloading sources
 ./bin/prepare_sources.sh
 echo Downloading PulshenWRT modification
-./pwrt_setup.sh
+./bin/pwrt_setup.sh
 echo Done
