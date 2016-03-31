@@ -15,7 +15,7 @@ case "$item" in
   cd build_dir
   git clone git://git.openwrt.org/openwrt.git trunk_wrt && cd trunk_wrt
   ./scripts/feeds update -a && ./scripts/feeds install -a
-  cp configs_default/config_x86 ./.config
+  cp ../../configs_default/config_x86 ./.config
   ;;
   *) echo "Nothing entered"
   ;;
