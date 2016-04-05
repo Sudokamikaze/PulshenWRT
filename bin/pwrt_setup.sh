@@ -2,7 +2,7 @@
 cd ..
 echo ============================
 echo 1 PulshenWRT 14.04
-echo 2 PulshenWRT 15.05
+echo 2 PulshenWRT 15.05.1
 echo 3 PulshenWRT Trunk
 echo ============================
 echo -n "Choose an action: "
