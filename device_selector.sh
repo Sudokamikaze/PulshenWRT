@@ -1,4 +1,12 @@
 #!/bin/bash
+echo -n "Install libs for building? Y/n: "
+read libs
+case "$libs" in
+  y|Y) ./bin/prepare_utils.sh
+  ;;
+  n|N)
+  ;;
+esac
 echo Select the device
 echo ======================
 echo "1 TPLink TL-WR841N(D)"
