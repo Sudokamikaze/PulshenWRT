@@ -17,7 +17,7 @@ read item
 case "$item" in
   1) echo "Starting the setup process for TL-WR841N"
   ./bin/prepare_sources.sh
-  ./pwrt_setup.sh
+  ./bin/pwrt_setup.sh
   ;;
   2) echo "Starting the setup process for x86"
   cd build_dir
