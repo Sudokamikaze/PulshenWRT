@@ -30,6 +30,7 @@ case "$item" in
   *) echo "Waiting for input"
   ;;
 esac
+pwd
 echo Do you need U-Boot Unlock?
 echo ======================================
 echo 1 Unlock u-boot for PulshenWRT CC
@@ -40,15 +41,15 @@ echo -n "Choose an action: "
 read uboot
 case "$uboot" in
   1) echo "Unlocking for CC"
-  cd build_dir/cc_wrt/target/linux/ar71xx/files/drivers/mtd/
+  cd target/linux/ar71xx/files/drivers/mtd/
   patch < ../../../../../../../../tmp/PulshenWRT_CC/uboot_unlock.patch
   ;;
   2) echo "Unlocking for TRUNK"
-  cd build_dir/trunk_wrt/target/linux/ar71xx/files/drivers/mtd/
+  cd target/linux/ar71xx/files/drivers/mtd/
   patch < ../../../../../../../../tmp/PulshenWRT_trunk/uboot_unlock.patch
   ;;
   3) echo "Unlocking for LEDE"
-  cd build_dir/trunk_lede/target/linux/ar71xx/files/drivers/mtd/
+  cd target/linux/ar71xx/files/drivers/mtd/
   patch < ../../../../../../../../tmp/PulshenWRT_LEDE/uboot_unlock.patch
   ;;
   *) echo "Waiiting for input"
