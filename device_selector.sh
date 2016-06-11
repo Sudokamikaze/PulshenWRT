@@ -72,4 +72,5 @@ case "$sources" in
   ;;
 esac
 echo "Starting PWRT setup script..."
+cd ../../
 ./pwrt_setup.sh
