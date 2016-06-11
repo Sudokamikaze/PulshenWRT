@@ -23,7 +23,7 @@ case "$menu" in
   3) echo "Starting update script section..."
   echo There versions in main build dir:
   cd build_dir && ls
-  echo -n "Select folder to uodate and write name of it: "
+  echo -n "Select folder to update and write name of it: "
   read update
   cd $update
   git pull
