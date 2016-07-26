@@ -27,9 +27,9 @@ case "$item" in
   ;;
   2) echo "Starting the setup process for x86"
   cd build_dir
-  git clone git://git.openwrt.org/openwrt.git trunk_wrt && cd trunk_wrt
+  git clone git@github.com:lede-project/source.git x86_lede && cd x86_lede
   ./scripts/feeds update -a && ./scripts/feeds install -a
-  cp ../../configs_default/config_x86 ./.config
+  cp ../../configs_default/config_x86_lede ./.config
   ;;
   *) echo "Nothing entered"
   ;;
