@@ -1,5 +1,23 @@
 #!/bin/bash
 figlet PulshenWRT
+
+function callpwrt {
+  cd tmp && git clone https://github.com/Sudokamikaze/"$imlovewrt".git
+  echo Applying patches
+  cp -r $imlovewrt/files ../build_dir/$morelove/
+  cd ../build_dir/$morelove && patch < ../../tmp/$imlovewrt/$imlovewrt.diff
+  if [ $morelove == cc_wrt ]; then
+  cp $imlovewrt/feeds.conf.default ../build_dir/$morelove/
+fi
+  cd ../../
+}
+
+function calluboot {
+  cd build_dir/$morelove
+  cd target/linux/ar71xx/files/drivers/mtd/
+  patch < ../../../../../../../../tmp/$imlovewrt/uboot_unlock.patch
+}
+
 echo ======================================
 echo "1. PulshenWRT stable (OPENWRT 15.05.1)"
 echo "2. PulshenWRT upstream (OPENWRT Trunk)"
@@ -9,23 +27,19 @@ echo -n "Select version: "
 read item
 case "$item" in
   1) echo "Cloning repo"
-  cd tmp && git clone https://github.com/Sudokamikaze/PulshenWRT_CC.git
-  echo Applying patches
-  cp -r PulshenWRT_CC/files ../build_dir/cc_wrt/
-  cd ../build_dir/cc_wrt && patch < ../../tmp/PulshenWRT_CC/PulshenWRT_CC.diff
-  cp PulshenWRT_CC/feeds.conf.default ../build_dir/cc_wrt/
+  imlovewrt=PulshenWRT_CC
+  morelove=cc_wrt
+  callpwrt
   ;;
   2) echo "Cloning repo"
-  cd tmp && git clone https://github.com/Sudokamikaze/PulshenWRT_trunk.git
-  echo Applying patches
-  cp -r PulshenWRT_trunk/files ../build_dir/trunk_wrt/
-  cd ../build_dir/trunk_wrt && patch < ../../tmp/PulshenWRT_trunk/PulshenWRT_trunk.diff
+  imlovewrt=PulshenWRT_trunk
+  morelove=trunk_wrt
+  callpwrt
   ;;
   3) echo "Cloning repo"
-  cd tmp && git clone git@github.com:Sudokamikaze/PulshenWRT_LEDE.git
-  echo Applying patches
-  cp -r PulshenWRT_LEDE/files ../build_dir/trunk_lede/
-  cd ../build_dir/trunk_lede && patch < ../../tmp/PulshenWRT_LEDE/PulshenWRT_LEDE.diff
+  imlovewrt=PulshenWRT_LEDE
+  morelove=trunk_lede
+  callpwrt
   ;;
   *) echo "Waiting for input"
   ;;
@@ -48,16 +62,13 @@ echo -n "Choose an action: "
 read uboot
 case "$uboot" in
   1) echo "Unlocking for CC"
-  cd target/linux/ar71xx/files/drivers/mtd/
-  patch < ../../../../../../../../tmp/PulshenWRT_CC/uboot_unlock.patch
+  calluboot
   ;;
   2) echo "Unlocking for TRUNK"
-  cd target/linux/ar71xx/files/drivers/mtd/
-  patch < ../../../../../../../../tmp/PulshenWRT_trunk/uboot_unlock.patch
+  calluboot
   ;;
   3) echo "Unlocking for LEDE"
-  cd target/linux/ar71xx/files/drivers/mtd/
-  patch < ../../../../../../../../tmp/PulshenWRT_LEDE/uboot_unlock.patch
+  calluboot
   ;;
   *) echo "Waiiting for input"
   ;;
