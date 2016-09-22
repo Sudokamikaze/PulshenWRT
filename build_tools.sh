@@ -1,4 +1,5 @@
 #!/bin/bash
+eval $(grep BUILDDIR= ./rom.config)
 figlet PulshenWRT
 echo ====================
 echo "1 - Build"
@@ -11,21 +12,13 @@ case "$menu" in
   1) echo "Starting build script section..."
   ;;
   2) echo "Starting clean script section..."
-  echo There versions in main build dir:
-  cd build_dir && ls
-  echo -n "Select folder to clean and write name of it: "
-  read clean
-  cd $clean
+  cd build_dir/$BUILDDIR
   make clean
   echo Done!
   exit
   ;;
   3) echo "Starting update script section..."
-  echo There versions in main build dir:
-  cd build_dir && ls
-  echo -n "Select folder to update and write name of it: "
-  read update
-  cd $update
+  cd build_dir/$BUILDDIR
   git pull
   ./scripts/feeds update -a
   ./scripts/feeds install -a
@@ -35,11 +28,7 @@ case "$menu" in
   *) echo "Error, unknow symbol, exiting..."
   ;;
 esac
-echo There versions in main build dir:
-cd build_dir && ls
-echo -n "Select folder to build and write name of it: "
-read build
-cd $build
+cd build_dir/$BUILDDIR
 echo ===========================
 echo "1 Build toolchain & tools"
 echo "2 Build firmware"
