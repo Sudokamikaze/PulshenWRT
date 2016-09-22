@@ -18,6 +18,7 @@ elif [ $BUILDDIR == cc_wrt ]; then
   git clone https://github.com/Sudokamikaze/PulshenWRT_CC
   currentver=PulshenWRT_CC
 fi
+  cd $currentver
   cp -r files/ ../../build_dir/$BUILDDIR
   echo Done!
 }
