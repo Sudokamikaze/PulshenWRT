@@ -16,10 +16,10 @@ case "$libs" in
   ;;
 esac
 echo Select the device
-echo ======================
-echo "1 TPLink TL-WR841N(D)"
+echo =======================================
+echo "1 TPLink TL-WR841N(D) only V8 or V8.*"
 echo "2 x86(For virtualbox)"
-echo ======================
+echo =======================================
 echo -n "Choose the device: "
 read item
 case "$item" in
