@@ -1,5 +1,28 @@
 #!/bin/bash
 eval $(grep BUILDDIR= ./rom.config)
+
+function update {
+  cd build_dir/$BUILDDIR
+  rm -rf files
+  git pull
+  ./scripts/feeds update -a
+  ./scripts/feeds install -a
+  cd ../../tmp
+  if [ $BUILDDIR == trunk_lede ]; then
+  git clone https://github.com/Sudokamikaze/PulshenWRT_LEDE
+  currentver=PulshenWRT_LEDE
+  if [ $BUILDDIR == trunk_wrt ]; then
+  git clone https://github.com/Sudokamikaze/PulshenWRT_trunk
+  currentver=PulshenWRT_trunk
+  if [ $BUILDDIR == cc_wrt ]; then
+  git clone https://github.com/Sudokamikaze/PulshenWRT_CC
+  currentver=PulshenWRT_CC
+fi
+  cp -r files/ ../../build_dir/$BUILDDIR
+
+  echo Done!
+}
+
 figlet PulshenWRT
 echo ====================
 echo "1 - Build"
@@ -18,11 +41,7 @@ case "$menu" in
   exit
   ;;
   3) echo "Starting update script section..."
-  cd build_dir/$BUILDDIR
-  git pull
-  ./scripts/feeds update -a
-  ./scripts/feeds install -a
-  echo Done!
+  update
   exit
   ;;
   *) echo "Error, unknow symbol, exiting..."
