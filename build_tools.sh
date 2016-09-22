@@ -11,15 +11,14 @@ function update {
   if [ $BUILDDIR == trunk_lede ]; then
   git clone https://github.com/Sudokamikaze/PulshenWRT_LEDE
   currentver=PulshenWRT_LEDE
-  if [ $BUILDDIR == trunk_wrt ]; then
+elif [ $BUILDDIR == trunk_wrt ]; then
   git clone https://github.com/Sudokamikaze/PulshenWRT_trunk
   currentver=PulshenWRT_trunk
-  if [ $BUILDDIR == cc_wrt ]; then
+elif [ $BUILDDIR == cc_wrt ]; then
   git clone https://github.com/Sudokamikaze/PulshenWRT_CC
   currentver=PulshenWRT_CC
 fi
   cp -r files/ ../../build_dir/$BUILDDIR
-
   echo Done!
 }
 
