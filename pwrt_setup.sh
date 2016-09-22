@@ -30,8 +30,15 @@ case "$item" in
   *) echo "Waiting for input"
   ;;
 esac
-pwd
-echo Do you need U-Boot Unlock?
+echo -n "Do you need U-Boot Unlock? "
+read ubootcheck
+if [ $ubootcheck == y ]; then
+echo "OK, that version of PulshenWRT you have?"
+elif [ $ubootcheck == Y ]; then
+echo "OK, that version of PulshenWRT you have?"
+else
+  echo " "
+fi
 echo ======================================
 echo 1 Unlock u-boot for PulshenWRT CC
 echo 2 Unlock u-boot for PulshenWRT TRUNK
