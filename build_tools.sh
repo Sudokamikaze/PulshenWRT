@@ -1,5 +1,10 @@
 #!/bin/bash
-eval $(grep BUILDDIR= ./rom.config)
+
+# If u wan't to build *** define:
+# trunk_lede for LEDE
+# cc_wrt for Openwrt Chaos Calmer
+# trunk_wrt for Openwrt TRUNK
+BUILDDIR=trunk_lede
 
 function update {
   cd build_dir/$BUILDDIR
