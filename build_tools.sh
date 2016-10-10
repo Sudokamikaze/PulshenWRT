@@ -6,6 +6,13 @@
 # trunk_wrt for Openwrt TRUNK
 BUILDDIR=trunk_lede
 
+function check {
+  PWD=$(pwd)
+  if [ -d $PWD/$currentver ]; then
+  rm -rf $currentver
+  fi
+}
+
 function update {
   cd build_dir/$BUILDDIR
   rm -rf files
@@ -13,17 +20,22 @@ function update {
   ./scripts/feeds update -a
   ./scripts/feeds install -a
   cd ../../tmp
-  if [ $BUILDDIR == trunk_lede ]; then
-  git clone https://github.com/Sudokamikaze/PulshenWRT_LEDE
-  currentver=PulshenWRT_LEDE
-elif [ $BUILDDIR == trunk_wrt ]; then
-  git clone https://github.com/Sudokamikaze/PulshenWRT_trunk
-  currentver=PulshenWRT_trunk
-elif [ $BUILDDIR == cc_wrt ]; then
-  git clone https://github.com/Sudokamikaze/PulshenWRT_CC
-  currentver=PulshenWRT_CC
-fi
+  case "$BUILDDIR" in
+    trunk_lede) git clone https://github.com/Sudokamikaze/PulshenWRT_LEDE
+    currentver=PulshenWRT_LEDE
+    check
+    ;;
+    trunk_wrt) git clone https://github.com/Sudokamikaze/PulshenWRT_trunk
+    currentver=PulshenWRT_trunk
+    check
+    ;;
+    cc_wrt) git clone https://github.com/Sudokamikaze/PulshenWRT_CC
+    currentver=PulshenWRT_CC
+    check
+    ;;
+esac
   cd $currentver
+  rm -rf ../../build_dir/$BUILDDIR/files
   cp -r files/ ../../build_dir/$BUILDDIR
   echo Done!
 }
