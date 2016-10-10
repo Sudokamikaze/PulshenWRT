@@ -54,16 +54,19 @@ case "$sources" in
 dirwrt=cc_wrt
 git=git://git.openwrt.org/15.05/openwrt.git
 config=cc
+callpwrt
   ;;
   2) echo "Cloning repo"
 dirwrt=trunk_wrt
 git=git://git.openwrt.org/openwrt.git
 config=trunk
+callpwrt
   ;;
   3) echo "Clonning repo"
 dirwrt=trunk_lede
 git=git@github.com:lede-project/source.git
 config=lede_trunk
+callpwrt
   ;;
   *) echo "Waiting for input"
   ;;
