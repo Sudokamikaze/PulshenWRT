@@ -75,3 +75,4 @@ echo "Starting PWRT setup script..."
 cd ../../
 find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/true/false/g" {} \;
 ./pwrt_setup.sh
+find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/false/true/g" {} \;
