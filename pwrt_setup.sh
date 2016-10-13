@@ -5,37 +5,37 @@ manuallaunch=true
 figlet PulshenWRT
 
 function callpwrt {
-  cd tmp && git clone https://github.com/Sudokamikaze/"$imlovewrt".git
+  cd tmp && git clone https://github.com/Sudokamikaze/"$git".git
   echo Applying patches
-  cp -r $imlovewrt/files ../build_dir/$morelove/
-  cd ../build_dir/$morelove && patch < ../../tmp/$imlovewrt/$imlovewrt.diff
-  if [ $morelove == cc_wrt ]; then
-  cp $imlovewrt/feeds.conf.default ../build_dir/$morelove/
+  cp -r $git/files ../build_dir/$dirwrt/
+  cd ../build_dir/$dirwrt && patch < ../../tmp/$git/$git.diff
+  if [ $dirwrt == cc_wrt ]; then
+  cp $git/feeds.conf.default ../build_dir/$dirwrt/
 fi
   cd ../../
 }
 
 function calluboot {
-  cd build_dir/$morelove
+  cd build_dir/$dirwrt
   cd target/linux/ar71xx/files/drivers/mtd/
-  patch < ../../../../../../../../tmp/$imlovewrt/uboot_unlock.patch
+  patch < ../../../../../../../../tmp/$git/uboot_unlock.patch
 }
 
 function definevars {
   case "$item" in
     1) echo "Cloning repo"
-    imlovewrt=PulshenWRT_CC
-    morelove=cc_wrt
+    git=PulshenWRT_CC
+    dirwrt=cc_wrt
     callpwrt
     ;;
     2) echo "Cloning repo"
-    imlovewrt=PulshenWRT_trunk
-    morelove=trunk_wrt
+    git=PulshenWRT_trunk
+    dirwrt=trunk_wrt
     callpwrt
     ;;
     3) echo "Cloning repo"
-    imlovewrt=PulshenWRT_LEDE
-    morelove=trunk_lede
+    git=PulshenWRT_LEDE
+    dirwrt=trunk_lede
     callpwrt
     ;;
     *) echo "Waiting for input"
