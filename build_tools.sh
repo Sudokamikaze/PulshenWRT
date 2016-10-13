@@ -21,17 +21,17 @@ function update {
   ./scripts/feeds install -a
   cd ../../tmp
   case "$BUILDDIR" in
-    trunk_lede) git clone https://github.com/Sudokamikaze/PulshenWRT_LEDE
+    trunk_lede) check
+    git clone https://github.com/Sudokamikaze/PulshenWRT_LEDE
     currentver=PulshenWRT_LEDE
-    check
     ;;
-    trunk_wrt) git clone https://github.com/Sudokamikaze/PulshenWRT_trunk
+    trunk_wrt) check
+    git clone https://github.com/Sudokamikaze/PulshenWRT_trunk
     currentver=PulshenWRT_trunk
-    check
     ;;
-    cc_wrt) git clone https://github.com/Sudokamikaze/PulshenWRT_CC
+    cc_wrt) check
+    git clone https://github.com/Sudokamikaze/PulshenWRT_CC
     currentver=PulshenWRT_CC
-    check
     ;;
 esac
   cd $currentver
