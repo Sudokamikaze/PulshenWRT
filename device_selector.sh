@@ -1,6 +1,7 @@
 #!/bin/bash
 
 function callpwrt {
+  cd build_dir
   git clone $git $dirwrt && cd $dirwrt
   ./scripts/feeds update -a && ./scripts/feeds install -a
   cp ../../configs_default/config_$config ./.config
@@ -30,7 +31,9 @@ echo =======================================
 echo -n "Choose the device: "
 read item
 case "$item" in
-  1) echo "Starting the setup process for TL-WR841N"
+  1) echo " "
+  echo "Starting the setup process for TL-WR841N"
+  echo " "
   ;;
   2) echo "Starting the setup process for x86"
   cd build_dir
