@@ -76,6 +76,6 @@ callpwrt
 esac
 echo "Starting PWRT setup script..."
 cd ../../
-find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/true/false/g" {} \;
+find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/manuallaunch=true/manuallaunch=false/g" {} \;
 ./pwrt_setup.sh
-find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/false/true/g" {} \;
+find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/manuallaunch=false/manuallaunch=true/g" {} \;
