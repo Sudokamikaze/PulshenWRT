@@ -64,7 +64,7 @@ callpwrt
   ;;
   3) echo "Clonning repo"
 dirwrt=trunk_lede
-git=git@github.com:lede-project/source.git
+git=https://git.lede-project.org/source.git
 config=lede_trunk
 callpwrt
   ;;
