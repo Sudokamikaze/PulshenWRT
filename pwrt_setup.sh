@@ -2,6 +2,9 @@
 
 manuallaunch=true
 
+PWD=$(pwd)
+DIR=$PWD
+
 figlet PulshenWRT
 
 function callpwrt {
@@ -88,3 +91,4 @@ case "$morelove" in
   ;;
 esac
 echo Done
+cd $DIR
