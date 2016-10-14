@@ -73,7 +73,7 @@ case "$manuallaunch" in
   true) displaymenu
   ;;
 esac
-echo -n "Do you need U-Boot Unlock? "
+echo -n "Do you need U-Boot Unlock? [Y/N]: "
 read ubootcheck
 if [ $ubootcheck == y ]; then
 echo "Unlock.."
