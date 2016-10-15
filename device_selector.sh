@@ -70,25 +70,25 @@ case "$sources" in
 dirwrt=cc_wrt
 git=git://git.openwrt.org/15.05/openwrt.git
 config=cc
+callpwrt
 find ./bin/find -name find -exec sed -i "s/tempvar=undefined/tempvar=cc_wrt/g" {} \;
 ./bin/find
-callpwrt
   ;;
   2) echo "Cloning repo"
 dirwrt=trunk_wrt
 git=git://git.openwrt.org/openwrt.git
 config=trunk
+callpwrt
 find ./bin/find -name find -exec sed -i "s/tempvar=undefined/tempvar=trunk_wrt/g" {} \;
 ./bin/find
-callpwrt
   ;;
   3) echo "Clonning repo"
 dirwrt=trunk_lede
 git=https://git.lede-project.org/source.git
 config=lede_trunk
+callpwrt
 find ./bin/find -name find -exec sed -i "s/tempvar=undefined/tempvar=trunk_lede/g" {} \;
 ./bin/find
-callpwrt
   ;;
   *) echo "Waiting for input"
   ;;
