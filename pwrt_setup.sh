@@ -45,14 +45,6 @@ function definevars {
     ;;
   esac
 }
-
-
-function displaymenu {
-  echo ======================================
-  echo "1. PulshenWRT stable (OPENWRT 15.05.1)"
-  echo "2. PulshenWRT upstream (OPENWRT Trunk)"
-  echo "3. PulshenWRT testing (LEDE TRUNK)"
-  echo ======================================
   echo -n "Select version: "
   read item
   definevars
@@ -71,11 +63,11 @@ fi
 case "$manuallaunch" in
   false) echo Automatic install for $dirwrt
   eval $(grep autoinstall= ./device_selector.sh)
-  if [ $dirwrt == cc_wrt ]; then
+  if [ $autoinstall == cc_wrt ]; then
   item=1
-  elif [ $dirwrt == trunk_wrt ]; then
+elif [ $autoinstall == trunk_wrt ]; then
   item=2
-  elif [ $dirwrt == trunk_lede ]; then
+elif [ $autoinstall == trunk_lede ]; then
   item=3
   fi
   definevars
