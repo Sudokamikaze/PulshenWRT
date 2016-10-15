@@ -7,6 +7,7 @@ function callpwrt {
   git clone $git $dirwrt && cd $dirwrt
   ./scripts/feeds update -a && ./scripts/feeds install -a
   cp ../../configs_default/config_$config ./.config
+  cd ../../
 }
 
 function findfix {
@@ -94,7 +95,6 @@ find ./bin/find -name find -exec sed -i "s/tempvar=undefined/tempvar=trunk_lede/
   ;;
 esac
 echo "Starting PWRT setup script..."
-cd ../../
 find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/manuallaunch=true/manuallaunch=false/g" {} \;
 ./pwrt_setup.sh
 find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/manuallaunch=false/manuallaunch=true/g" {} \;
