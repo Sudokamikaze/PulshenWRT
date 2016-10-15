@@ -102,4 +102,6 @@ case "$dirwrt" in
 esac
 echo Done
 cd $DIR
+if [ $manuallaunch == false ]; then
 revertundefined
+fi
