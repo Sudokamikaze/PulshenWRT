@@ -1,5 +1,7 @@
 #!/bin/bash
 
+autoinstall=undefined
+
 function callpwrt {
   cd build_dir
   git clone $git $dirwrt && cd $dirwrt
@@ -57,18 +59,21 @@ case "$sources" in
 dirwrt=cc_wrt
 git=git://git.openwrt.org/15.05/openwrt.git
 config=cc
+find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=undefined/autoinstall=cc_wrt/g" {} \;
 callpwrt
   ;;
   2) echo "Cloning repo"
 dirwrt=trunk_wrt
 git=git://git.openwrt.org/openwrt.git
 config=trunk
+find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=undefined/autoinstall=trunk_wrt/g" {} \;
 callpwrt
   ;;
   3) echo "Clonning repo"
 dirwrt=trunk_lede
 git=https://git.lede-project.org/source.git
 config=lede_trunk
+find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=undefined/autoinstall=trunk_lede/g" {} \;
 callpwrt
   ;;
   *) echo "Waiting for input"

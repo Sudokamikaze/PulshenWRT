@@ -58,9 +58,19 @@ function displaymenu {
   definevars
 }
 
+function revertundefined {
+if [ $autoinstall == cc_wrt ]; then
+  find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=cc_wrt/autoinstall=undefined/g" {} \;
+elif [ $autoinstall == trunk_wrt ]; then
+  find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=trunk_wrt/autoinstall=undefined/g" {} \;
+elif [ $autoinstall == trunk_lede ]; then
+  find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=trunk_lede/autoinstall=undefined/g" {} \;
+fi
+}
+
 case "$manuallaunch" in
   false) echo Automatic install for $dirwrt
-  eval $(grep dirwrt= ./device_selector.sh)
+  eval $(grep autoinstall= ./device_selector.sh)
   if [ $dirwrt == cc_wrt ]; then
   item=1
   elif [ $dirwrt == trunk_wrt ]; then
@@ -92,3 +102,4 @@ case "$morelove" in
 esac
 echo Done
 cd $DIR
+revertundefined
