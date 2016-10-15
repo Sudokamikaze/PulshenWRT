@@ -12,9 +12,6 @@ function callpwrt {
   echo Applying patches
   cp -r $git/files ../build_dir/$dirwrt/
   cd ../build_dir/$dirwrt && patch < ../../tmp/$git/$git.diff
-  if [ $dirwrt == cc_wrt ]; then
-  cp $git/feeds.conf.default ../build_dir/$dirwrt/
-fi
   cd ../../
 }
 
@@ -68,7 +65,7 @@ fi
 }
 
 case "$manuallaunch" in
-  false) echo Automatic install for $dirwrt
+  false) echo Automatic install for $autoinstall
   eval $(grep autoinstall= ./device_selector.sh)
   if [ $autoinstall == cc_wrt ]; then
   item=1
