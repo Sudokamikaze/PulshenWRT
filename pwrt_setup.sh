@@ -92,7 +92,7 @@ echo "Unlock.."
 else
   echo " "
 fi
-case "$morelove" in
+case "$dirwrt" in
   cc_wrt) calluboot
   ;;
   trunk_wrt) calluboot
