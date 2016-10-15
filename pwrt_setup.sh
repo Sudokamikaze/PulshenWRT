@@ -65,8 +65,7 @@ fi
 }
 
 case "$manuallaunch" in
-  false) echo Automatic install for $autoinstall
-  eval $(grep autoinstall= ./device_selector.sh)
+  false) eval $(grep autoinstall= ./device_selector.sh)
   if [ $autoinstall == cc_wrt ]; then
   item=1
 elif [ $autoinstall == trunk_wrt ]; then
