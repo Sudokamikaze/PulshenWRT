@@ -45,6 +45,7 @@ function definevars {
     ;;
   esac
 }
+
 function displaymenu {
   echo ======================================
   echo "1. PulshenWRT stable (OPENWRT 15.05.1)"
