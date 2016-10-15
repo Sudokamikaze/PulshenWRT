@@ -45,9 +45,15 @@ function definevars {
     ;;
   esac
 }
-  echo -n "Select version: "
-  read item
-  definevars
+function displaymenu {
+  echo ======================================
+  echo "1. PulshenWRT stable (OPENWRT 15.05.1)"
+  echo "2. PulshenWRT upstream (OPENWRT Trunk)"
+  echo "3. PulshenWRT testing (LEDE TRUNK)"
+  echo ======================================
+   echo -n "Select version: "
+   read item
+   definevars
 }
 
 function revertundefined {
