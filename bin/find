@@ -1,12 +1,12 @@
 #!/bin/bash
 
-autoinstall=undefined
+tempvar=undefined
 
-if [ $autoinstall == cc_wrt ]; then
+if [ $tempvar == cc_wrt ]; then
   find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=undefined/autoinstall=cc_wrt/g" {} \;
-elif [ $autoinstall == trunk_wrt ]; then
+elif [ $tempvar == trunk_wrt ]; then
   find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=undefined/autoinstall=trunk_wrt/g" {} \;
-elif [ $autoinstall == trunk_lede ]; then
+elif [ $tempvar == trunk_lede ]; then
   find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=undefined/autoinstall=trunk_lede/g" {} \;
 else
   echo "Do not execute this script manualy!"
