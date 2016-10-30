@@ -40,6 +40,8 @@ case "$item" in
   git clone git@github.com:lede-project/source.git x86_lede && cd x86_lede
   ./scripts/feeds update -a && ./scripts/feeds install -a
   cp ../../configs_default/config_x86_lede ./.config
+  echo "Done!"
+  exit
   ;;
   *) echo "Nothing entered"
   ;;
