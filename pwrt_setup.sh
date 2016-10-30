@@ -85,6 +85,7 @@ case "$dirwrt" in
 esac
 echo Done
 cd $DIR
+rm -rf tmp/*
 if [ $manuallaunch == false ]; then
 unset manuallaunch
 unset autoinstall
