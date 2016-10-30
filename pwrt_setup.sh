@@ -63,7 +63,7 @@ elif [ $autoinstall == trunk_lede ]; then
   fi
   definevars
   ;;
-  true) displaymenu
+  *) displaymenu
   ;;
 esac
 echo -n "Do you need U-Boot Unlock? [Y/N]: "
