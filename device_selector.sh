@@ -1,7 +1,5 @@
 #!/bin/bash
 
-autoinstall=undefined
-
 function callpwrt {
   cd build_dir
   git clone $git $dirwrt && cd $dirwrt
@@ -9,18 +7,6 @@ function callpwrt {
   cp ../../configs_default/config_$config ./.config
   cd ../../
 }
-
-function findfix {
-  eval $(grep tempvar= ./bin/find)
-  if [ $tempvar == cc_wrt ]; then
-  find ./bin/find -name find -exec sed -i "s/tempvar=cc_wrt/tempvar=undefined/g" {} \;
-elif [ $tempvar == trunk_wrt ]; then
-  find ./bin/find -name find -exec sed -i "s/tempvar=trunk_wrt/tempvar=undefined/g" {} \;
-elif [ $tempvar == trunk_lede ]; then
-  find ./bin/find -name find -exec sed -i "s/tempvar=trunk_lede/tempvar=undefined/g" {} \;
-fi
-}
-
 
 echo -n "Install libs for building? Y/n: "
 read libs
@@ -72,30 +58,25 @@ dirwrt=cc_wrt
 git=git://git.openwrt.org/15.05/openwrt.git
 config=cc
 callpwrt
-find ./bin/find -name find -exec sed -i "s/tempvar=undefined/tempvar=cc_wrt/g" {} \;
-./bin/find
+export autoinstall=cc_wrt
   ;;
   2) echo "Cloning repo"
 dirwrt=trunk_wrt
 git=git://git.openwrt.org/openwrt.git
 config=trunk
 callpwrt
-find ./bin/find -name find -exec sed -i "s/tempvar=undefined/tempvar=trunk_wrt/g" {} \;
-./bin/find
+export autoinstall=trunk_wrt
   ;;
   3) echo "Clonning repo"
 dirwrt=trunk_lede
 git=https://git.lede-project.org/source.git
 config=lede_trunk
 callpwrt
-find ./bin/find -name find -exec sed -i "s/tempvar=undefined/tempvar=trunk_lede/g" {} \;
-./bin/find
+export autoinstall=trunk_lede
   ;;
   *) echo "Waiting for input"
   ;;
 esac
 echo "Starting PWRT setup script..."
-find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/manuallaunch=true/manuallaunch=false/g" {} \;
+export manuallaunch=false
 ./pwrt_setup.sh
-find ./pwrt_setup.sh -name pwrt_setup.sh -exec sed -i "s/manuallaunch=false/manuallaunch=true/g" {} \;
-findfix

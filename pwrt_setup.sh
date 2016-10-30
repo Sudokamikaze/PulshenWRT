@@ -1,7 +1,5 @@
 #!/bin/bash
 
-manuallaunch=true
-
 PWD=$(pwd)
 DIR=$PWD
 
@@ -54,18 +52,8 @@ function displaymenu {
    definevars
 }
 
-function revertundefined {
-if [ $autoinstall == cc_wrt ]; then
-  find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=cc_wrt/autoinstall=undefined/g" {} \;
-elif [ $autoinstall == trunk_wrt ]; then
-  find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=trunk_wrt/autoinstall=undefined/g" {} \;
-elif [ $autoinstall == trunk_lede ]; then
-  find ./device_selector.sh -name device_selector.sh -exec sed -i "s/autoinstall=trunk_lede/autoinstall=undefined/g" {} \;
-fi
-}
-
 case "$manuallaunch" in
-  false) eval $(grep autoinstall= ./device_selector.sh)
+  false)
   if [ $autoinstall == cc_wrt ]; then
   item=1
 elif [ $autoinstall == trunk_wrt ]; then
@@ -98,5 +86,6 @@ esac
 echo Done
 cd $DIR
 if [ $manuallaunch == false ]; then
-revertundefined
+unset manuallaunch
+unset autoinstall
 fi
