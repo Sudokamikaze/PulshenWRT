@@ -15,6 +15,7 @@ function check {
 
 function update {
   cd build_dir/$BUILDDIR
+  make clean 
   rm -rf files
   git pull
   ./scripts/feeds update -a
