@@ -15,24 +15,24 @@ function check {
 
 function update {
   cd build_dir/$BUILDDIR
-  make clean 
+  make clean
   rm -rf files
   git pull
   ./scripts/feeds update -a
   ./scripts/feeds install -a
   cd ../../tmp
   case "$BUILDDIR" in
-    trunk_lede) check
+    trunk_lede) currentver=PulshenWRT_LEDE
+    check
     git clone https://github.com/Sudokamikaze/PulshenWRT_LEDE
-    currentver=PulshenWRT_LEDE
     ;;
-    trunk_wrt) check
+    trunk_wrt) currentver=PulshenWRT_trunk
+    check
     git clone https://github.com/Sudokamikaze/PulshenWRT_trunk
-    currentver=PulshenWRT_trunk
     ;;
-    cc_wrt) check
+    cc_wrt) currentver=PulshenWRT_CC
+    check
     git clone https://github.com/Sudokamikaze/PulshenWRT_CC
-    currentver=PulshenWRT_CC
     ;;
 esac
   cd $currentver
