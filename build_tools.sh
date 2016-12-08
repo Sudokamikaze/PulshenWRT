@@ -63,6 +63,7 @@ case "$menu" in
   exit
   ;;
   *) echo "Error, unknow symbol, exiting..."
+  exit 1 
   ;;
 esac
 cd build_dir/$BUILDDIR
