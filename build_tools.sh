@@ -63,7 +63,7 @@ case "$menu" in
   exit
   ;;
   *) echo "Error, unknow symbol, exiting..."
-  exit 1 
+  exit 1
   ;;
 esac
 cd build_dir/$BUILDDIR
@@ -79,3 +79,5 @@ else
 echo Error
 fi
 echo Done!
+cd ../../
+mv build_dir/$BUILDDIR/bin/targets/ar71xx/generic/*.bin out/
