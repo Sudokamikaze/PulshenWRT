@@ -53,6 +53,7 @@ case "$menu" in
   1) echo "Starting build script section..."
   ;;
   2) echo "Starting clean script section..."
+  rm out/*
   cd build_dir/$BUILDDIR
   make clean
   echo Done!
