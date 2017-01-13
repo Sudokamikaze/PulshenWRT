@@ -78,6 +78,7 @@ if [ $pwrt == 1 ]; then make tools/install ${MAKEFLAGS="-j$(nproc)"} V=-1 && mak
 elif [ $pwrt == 2 ]; then make ${MAKEFLAGS="-j$(nproc)"} V=-1
 else
 echo Error
+exit 1
 fi
 echo Done!
 cd ../../
