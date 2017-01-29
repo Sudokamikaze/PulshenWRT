@@ -10,6 +10,17 @@ BUILDDIR=trunk_lede
 BUILDED_TARGET="build_dir/$BUILDDIR/bin/targets/ar71xx/generic/"
 IMAGE="$BUILDED_TARGET/lede-ar71xx-generic-tl-wr841-v8-squashfs-sysupgrade.bin"
 
+function config_def {
+case "$BUILDDIR" in
+  trunk_lede) config=lede_trunk
+  ;;
+  cc_wrt) config=cc
+  ;;
+  trunk) config=trunk
+  ;;
+esac
+}
+
 function update {
   cd build_dir/$BUILDDIR
   make clean
@@ -17,6 +28,9 @@ function update {
   git pull
   ./scripts/feeds update -a
   ./scripts/feeds install -a
+  rm .config*
+  config_def
+  cp ../../configs_default/config_$config ./.config
   rm -rf ../../tmp/*
   cd ../../tmp
   case "$BUILDDIR" in
@@ -35,6 +49,7 @@ function update {
 esac
   cd $currentver
   cp -r files/ ../../build_dir/$BUILDDIR
+  cd ../build_dir/$BUILDDIR && patch < ../../tmp/$currentver/$currentver.diff
   echo Done!
 }
 
