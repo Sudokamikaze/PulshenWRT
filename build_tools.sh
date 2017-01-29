@@ -8,7 +8,7 @@ BUILDDIR=trunk_lede
 
 # DO NOT TOUCH THIS VARIABLES!
 BUILDED_TARGET="build_dir/$BUILDDIR/bin/targets/ar71xx/generic/"
-IMAGE="$BUILDED_TARGET/lede-ar71xx-generic-tl-wr841-v8-squashfs-sysupgrade.bin"
+IMAGE="bin/targets/ar71xx/generic/lede-ar71xx-generic-tl-wr841-v8-squashfs-sysupgrade.bin"
 
 function config_def {
 case "$BUILDDIR" in
