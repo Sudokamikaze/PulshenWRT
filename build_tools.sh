@@ -56,20 +56,19 @@ esac
 function build {
   DATE=$(date +%Y-%m-%d:%H:%M:%S)
 
-  if [ "$pwrt" == "1" ]; then
-  desc="Toolchain & tools"
-  make tools/install ${MAKEFLAGS="-j$(nproc)"} V=-1 && make toolchain/install ${MAKEFLAGS="-j$(nproc)"} V=-1
-  elif [ "$pwrt" == "2" ]; then
-  desc="Firmware"
-  make ${MAKEFLAGS="-j$(nproc)"} V=-1
-fi
+case "$pwrt" in
+  1) make tools/install ${MAKEFLAGS="-j$(nproc)"} V=-1 && make toolchain/install ${MAKEFLAGS="-j$(nproc)"} V=-1
+  ;;
+  2) make ${MAKEFLAGS="-j$(nproc)"} V=-1
+  ;;
+esac
 
 if [ -a $IMAGE ];
 then
 
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
-echo "$desc Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
+echo "Firmware Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
 else
 echo "Compilation failed! Fix the errors!"
 fi
