@@ -40,8 +40,6 @@ esac
 
 function build {
   DATE=$(date +%Y-%m-%d:%H:%M:%S)
-  if [ -a $IMAGE ];
-  then
 
   if [ "$pwrt" == "1" ]; then
   desc="Toolchain & tools"
@@ -50,6 +48,9 @@ function build {
   desc="Firmware"
   make ${MAKEFLAGS="-j$(nproc)"} V=-1
 fi
+
+if [ -a $IMAGE ];
+then
 
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
