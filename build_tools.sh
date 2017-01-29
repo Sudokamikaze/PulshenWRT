@@ -6,6 +6,10 @@
 # trunk_wrt for Openwrt TRUNK
 BUILDDIR=trunk_lede
 
+# DO NOT TOUCH THIS VARIABLES!
+BUILDED_TARGET="build_dir/$BUILDDIR/bin/targets/ar71xx/generic/"
+IMAGE="$BUILDED_TARGET/lede-ar71xx-generic-tl-wr841-v8-squashfs-sysupgrade.bin"
+
 function update {
   cd build_dir/$BUILDDIR
   make clean
@@ -30,10 +34,32 @@ function update {
     ;;
 esac
   cd $currentver
-  rm -rf ../../build_dir/$BUILDDIR/files
   cp -r files/ ../../build_dir/$BUILDDIR
   echo Done!
 }
+
+function build {
+  DATE=$(date +%Y-%m-%d:%H:%M:%S)
+  if [ -a $IMAGE ];
+  then
+
+  if [ "$pwrt" == "1" ]; then
+  desc="Toolchain & tools"
+  make tools/install ${MAKEFLAGS="-j$(nproc)"} V=-1 && make toolchain/install ${MAKEFLAGS="-j$(nproc)"} V=-1
+  elif [ "$pwrt" == "2" ]; then
+  desc="Firmware"
+  make ${MAKEFLAGS="-j$(nproc)"} V=-1
+fi
+
+BUILD_END=$(date +"%s")
+DIFF=$(($BUILD_END - $BUILD_START))
+echo "$desc Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
+else
+echo "Compilation failed! Fix the errors!"
+fi
+}
+
+
 
 figlet PulshenWRT
 echo ====================
@@ -61,6 +87,7 @@ case "$menu" in
   exit 1
   ;;
 esac
+
 cd build_dir/$BUILDDIR
 echo ===========================
 echo "1 Build toolchain & tools"
@@ -68,12 +95,7 @@ echo "2 Build firmware"
 echo ===========================
 echo -n "Choose an action: "
 read pwrt
-if [ $pwrt == 1 ]; then make tools/install ${MAKEFLAGS="-j$(nproc)"} V=-1 && make toolchain/install ${MAKEFLAGS="-j$(nproc)"} V=-1
-elif [ $pwrt == 2 ]; then make ${MAKEFLAGS="-j$(nproc)"} V=-1
-else
-echo Error
-exit 1
-fi
-echo Done!
+build
+
 cd ../../
-mv build_dir/$BUILDDIR/bin/targets/ar71xx/generic/*.bin out/
+mv $BUILDED_TARGET/*.bin out/
