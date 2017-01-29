@@ -113,4 +113,4 @@ read pwrt
 build
 
 cd ../../
-mv $BUILDED_TARGET/*.bin out/
+cp $BUILDED_TARGET/*.bin out/
