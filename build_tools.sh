@@ -6,13 +6,6 @@
 # trunk_wrt for Openwrt TRUNK
 BUILDDIR=trunk_lede
 
-function check {
-  PWD=$(pwd)
-  if [ -d $PWD/$currentver ]; then
-  rm -rf $currentver
-  fi
-}
-
 function update {
   cd build_dir/$BUILDDIR
   make clean
@@ -20,6 +13,7 @@ function update {
   git pull
   ./scripts/feeds update -a
   ./scripts/feeds install -a
+  rm -rf ../../tmp/*
   cd ../../tmp
   case "$BUILDDIR" in
     trunk_lede) currentver=PulshenWRT_LEDE

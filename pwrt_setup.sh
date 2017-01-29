@@ -1,11 +1,11 @@
 #!/bin/bash
 
-PWD=$(pwd)
-DIR=$PWD
+TOPDIR=$(pwd)
 
 figlet PulshenWRT
 
 function callpwrt {
+  echo " "
   cd tmp && git clone https://github.com/Sudokamikaze/"$git".git
   echo Applying patches
   cp -r $git/files ../build_dir/$dirwrt/
@@ -21,22 +21,23 @@ function calluboot {
 
 function definevars {
   case "$item" in
-    1) echo "Cloning repo"
+    1)
     git=PulshenWRT_CC
     dirwrt=cc_wrt
     callpwrt
     ;;
-    2) echo "Cloning repo"
+    2)
     git=PulshenWRT_trunk
     dirwrt=trunk_wrt
     callpwrt
     ;;
-    3) echo "Cloning repo"
+    3)
     git=PulshenWRT_LEDE
     dirwrt=trunk_lede
     callpwrt
     ;;
-    *) echo "Waiting for input"
+    *) echo "Error"
+    exit 1
     ;;
   esac
 }
@@ -68,22 +69,10 @@ elif [ $autoinstall == trunk_lede ]; then
 esac
 echo -n "Do you need U-Boot Unlock? [Y/N]: "
 read ubootcheck
-if [ $ubootcheck == y ]; then
-echo "Unlock.."
-elif [ $ubootcheck == Y ]; then
-echo "Unlock.."
-else
-  echo " "
-fi
-case "$dirwrt" in
-  cc_wrt) calluboot
-  ;;
-  trunk_wrt) calluboot
-  ;;
-  trunk_lede) calluboot
+case "$ubootcheck" in
+  y|Y) calluboot
   ;;
 esac
-echo Done
 cd $DIR
 rm -rf tmp/*
 if [ $manuallaunch == false ]; then

@@ -23,6 +23,7 @@ elif [ $ID == ubuntu ]; then sudo apt-get install subversion git g++ libncurses5
   n|N)
   ;;
 esac
+echo " "
 echo Select the device
 echo =======================================
 echo "1 TPLink TL-WR841N(D) only V8 or V8.*"
@@ -55,21 +56,21 @@ echo ========================
 echo -n "Choose version: "
 read sources
 case "$sources" in
-  1) echo "Cloning repo"
+  1)
 dirwrt=cc_wrt
 git=git://git.openwrt.org/15.05/openwrt.git
 config=cc
 callpwrt
 export autoinstall=cc_wrt
   ;;
-  2) echo "Cloning repo"
+  2)
 dirwrt=trunk_wrt
 git=git://git.openwrt.org/openwrt.git
 config=trunk
 callpwrt
 export autoinstall=trunk_wrt
   ;;
-  3) echo "Clonning repo"
+  3) 
 dirwrt=trunk_lede
 git=https://git.lede-project.org/source.git
 config=lede_trunk
