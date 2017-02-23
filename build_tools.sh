@@ -36,21 +36,18 @@ function update {
   cd ../../tmp
   case "$BUILDDIR" in
     trunk_lede) currentver=PulshenWRT_LEDE
-    check
     git clone https://github.com/Sudokamikaze/PulshenWRT_LEDE
     ;;
     trunk_wrt) currentver=PulshenWRT_trunk
-    check
     git clone https://github.com/Sudokamikaze/PulshenWRT_trunk
     ;;
     cc_wrt) currentver=PulshenWRT_CC
-    check
     git clone https://github.com/Sudokamikaze/PulshenWRT_CC
     ;;
 esac
   cd $currentver
   cp -r files/ ../../build_dir/$BUILDDIR
-  cd ../build_dir/$BUILDDIR && patch < ../../tmp/$currentver/$currentver.diff
+  cd ../../build_dir/$BUILDDIR && patch < ../../tmp/$currentver/$currentver.diff
   echo Done!
 }
 
