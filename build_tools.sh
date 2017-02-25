@@ -63,7 +63,7 @@ if [ -a $IMAGE ];
 then
 
 BUILD_END=$(date +"%s")
-DIFF=$(($BUILD_END - $BUILD_START))
+DIFF=$(($BUILD_END - $DATE))
 echo "Firmware Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
 else
 echo "Compilation failed! Fix the errors!"
