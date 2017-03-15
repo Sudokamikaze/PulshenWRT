@@ -5,13 +5,15 @@
  / ____/ /_/ / (__  ) / / /  __/ / / / |/ |/ / _, _/ / /
 /_/    \____/_/____/_/ /_/\___/_/ /_/|__/|__/_/ |_| /_/
 ```
-========
-
 Customized LEDE/Openwrt firmware for TL-WR841N(D)v8/x86
 
 ### Features
 
 Target optimization flags for TL-WR841N `-Os -pipe -mno-branch-likely -mips32r2 -mdspr2 -mtune=74kc`
+
+GCC 6.X 
+
+Graphite optimizations
 
 And for x86 `O2 -pipe -march=pentium4`
 
