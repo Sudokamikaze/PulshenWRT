@@ -50,13 +50,12 @@ esac
 }
 
 function build {
-DATE=$(date +%Y-%m-%d:%H:%M:%S)
 BUILD_START=$(date +"%s")
 
 case "$pwrt" in
-  1) make tools/install ${MAKEFLAGS="-j$(nproc)"} V=-1 && make toolchain/install ${MAKEFLAGS="-j$(nproc)"} V=-1
+  2|t|T) make tools/install ${MAKEFLAGS="-j$(nproc)"} V=-1 && make toolchain/install ${MAKEFLAGS="-j$(nproc)"} V=-1
   ;;
-  2) make ${MAKEFLAGS="-j$(nproc)"} V=-1
+  1|f|F) make ${MAKEFLAGS="-j$(nproc)"} V=-1
   ;;
 esac
 
@@ -66,12 +65,12 @@ then
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
 echo "Firmware Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
+cd ../../
+cp $BUILDED_TARGET/*.bin out/
 else
 echo "Compilation failed! Fix the errors!"
 fi
 }
-
-
 
 figlet PulshenWRT
 echo ====================
@@ -83,6 +82,10 @@ echo -n "Choose an action: "
 read menu
 case "$menu" in
   1) echo "Starting build script section..."
+  cd build_dir/$BUILDDIR
+  echo "Do you want to build firmware or only build toolchain? [F/T]: "
+  read pwrt
+  build
   ;;
   2) echo "Starting clean script section..."
   rm out/*
@@ -99,15 +102,3 @@ case "$menu" in
   exit 1
   ;;
 esac
-
-cd build_dir/$BUILDDIR
-echo ===========================
-echo "1 Build toolchain & tools"
-echo "2 Build firmware"
-echo ===========================
-echo -n "Choose an action: "
-read pwrt
-build
-
-cd ../../
-cp $BUILDED_TARGET/*.bin out/
