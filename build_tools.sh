@@ -83,7 +83,7 @@ read menu
 case "$menu" in
   1) echo "Starting build script section..."
   cd build_dir/$BUILDDIR
-  echo "Do you want to build firmware or only build toolchain? [F/T]: "
+  echo -n "Do you want to build firmware or only build toolchain? [F/T]: "
   read pwrt
   build
   ;;
