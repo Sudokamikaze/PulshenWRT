@@ -10,6 +10,8 @@ BUILDDIR=trunk_lede
 BUILDED_TARGET="build_dir/$BUILDDIR/bin/targets/ar71xx/generic/"
 IMAGE="$HOME/Git/PulshenWRT/$BUILDED_TARGET/lede-ar71xx-generic-tl-wr841-v8-squashfs-sysupgrade.bin"
 
+# For update function
+CONF_PWRT=true
 
 function config_def {
 case "$BUILDDIR" in
@@ -34,6 +36,7 @@ function update {
   cp ../../configs_default/config_$config ./.config
   rm -rf ../../tmp/*
   cd ../../tmp
+if [ "$CONF_PWRT" == "true" ]; then
   case "$BUILDDIR" in
     trunk_lede) currentver=PulshenWRT_LEDE
     ;;
@@ -47,6 +50,7 @@ esac
   cp -r files/ ../../build_dir/$BUILDDIR
   cd ../../build_dir/$BUILDDIR && patch < ../../tmp/$currentver/$currentver.diff
   echo Done!
+fi
 }
 
 function build {
