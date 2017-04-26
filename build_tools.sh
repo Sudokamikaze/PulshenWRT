@@ -58,6 +58,8 @@ BUILD_START=$(date +"%s")
 
 case "$pwrt" in
   2|t|T) make tools/install ${MAKEFLAGS="-j$(nproc)"} V=-1 && make toolchain/install ${MAKEFLAGS="-j$(nproc)"} V=-1
+  echo "Done"
+  exit
   ;;
   1|f|F) make ${MAKEFLAGS="-j$(nproc)"} V=-1
   ;;
