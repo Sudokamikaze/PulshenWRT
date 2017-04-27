@@ -8,6 +8,7 @@ function callpwrt {
   cd ../../
 }
 
+function libs {
 echo -n "Install libs for building? Y/n: "
 read libs
 case "$libs" in
@@ -23,11 +24,16 @@ elif [ $ID == ubuntu ]; then sudo apt-get install subversion git g++ libncurses5
   n|N)
   ;;
 esac
+}
+
 echo " "
 echo Select the device
 echo =======================================
 echo "1 TPLink TL-WR841N(D) only V8 or V8.*"
 echo "2 x86(For virtualbox)"
+echo =======================================
+echo "3. Install libs"
+echo "Notice: Use it if you first time started building *WRT"
 echo =======================================
 echo -n "Choose the device: "
 read item
@@ -43,6 +49,8 @@ case "$item" in
   cp ../../configs_default/config_x86_lede ./.config
   echo "Done!"
   exit
+  ;;
+  3) libs
   ;;
   *) echo "Nothing entered"
   ;;
@@ -70,7 +78,7 @@ config=trunk
 callpwrt
 export autoinstall=trunk_wrt
   ;;
-  3) 
+  3)
 dirwrt=trunk_lede
 git=https://git.lede-project.org/source.git
 config=lede_trunk
