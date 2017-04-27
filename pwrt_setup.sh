@@ -14,8 +14,7 @@ function callpwrt {
 }
 
 function calluboot {
-  cd build_dir/$dirwrt
-  cd target/linux/ar71xx/files/drivers/mtd/
+  cd build_dir/$dirwrt/target/linux/ar71xx/files/drivers/mtd/
   patch < ../../../../../../../../tmp/$git/uboot_unlock.patch
 }
 
@@ -44,9 +43,9 @@ function definevars {
 
 function displaymenu {
   echo ======================================
-  echo "1. PulshenWRT stable (OPENWRT 15.05.1)"
-  echo "2. PulshenWRT upstream (OPENWRT Trunk)"
-  echo "3. PulshenWRT testing (LEDE TRUNK)"
+  echo "1. PulshenWRT old stable (OPENWRT 15.05.1)"
+  echo "2. PulshenWRT old stable (OPENWRT Trunk)"
+  echo "3. PulshenWRT upsteam (LEDE TRUNK)"
   echo ======================================
    echo -n "Select version: "
    read item
