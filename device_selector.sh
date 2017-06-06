@@ -60,6 +60,7 @@ echo "1. Chaos Calmer"
 echo "2. Trunk"
 echo =========LEDE===========
 echo "3. Latest trunk"
+echo "4. Stable 17.01"
 echo ========================
 echo -n "Choose version: "
 read sources
@@ -84,6 +85,13 @@ git=https://git.lede-project.org/source.git
 config=lede_trunk
 callpwrt
 export autoinstall=trunk_lede
+  ;;
+  4)
+  dirwrt=stable_lede
+  git=https://git.lede-project.org/source.git -b lede-17.01
+  config=lede_trunk
+  callpwrt
+  export autoinstall=stable_lede
   ;;
   *) echo "Waiting for input"
   ;;

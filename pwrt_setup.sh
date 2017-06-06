@@ -6,7 +6,11 @@ figlet PulshenWRT
 
 function callpwrt {
   echo " "
-  cd tmp && git clone https://github.com/Sudokamikaze/"$git".git
+  if [ "$branch" != "stable" ]; then
+    cd tmp && git clone https://github.com/Sudokamikaze/"$git".git
+  else
+    cd tmp && git clone https://github.com/Sudokamikaze/"$git".git -b stable
+  fi
   echo Applying patches
   cp -r $git/files ../build_dir/$dirwrt/
   cd ../build_dir/$dirwrt && patch < ../../tmp/$git/$git.diff
@@ -35,6 +39,12 @@ function definevars {
     dirwrt=trunk_lede
     callpwrt
     ;;
+    4)
+    git=PulshenWRT_LEDE
+    branch=stable
+    dirwrt=stable_lede
+    callpwrt
+    ;;
     *) echo "Error"
     exit 1
     ;;
@@ -46,6 +56,7 @@ function displaymenu {
   echo "1. PulshenWRT old stable (OPENWRT 15.05.1)"
   echo "2. PulshenWRT old stable (OPENWRT Trunk)"
   echo "3. PulshenWRT upsteam (LEDE TRUNK)"
+  echo "4. PulshenWRT stable  (LEDE 17.01)"
   echo ======================================
    echo -n "Select version: "
    read item
@@ -60,6 +71,8 @@ elif [ $autoinstall == trunk_wrt ]; then
   item=2
 elif [ $autoinstall == trunk_lede ]; then
   item=3
+elif [ "$autoinstall" == "stable_lede" ]; then
+  item=4
   fi
   definevars
   ;;
