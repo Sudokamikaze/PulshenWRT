@@ -88,7 +88,7 @@ export autoinstall=trunk_lede
   ;;
   4)
   dirwrt=stable_lede
-  git=https://git.lede-project.org/source.git -b lede-17.01
+  git="https://git.lede-project.org/source.git -b lede-17.01"
   config=lede_trunk
   callpwrt
   export autoinstall=stable_lede
